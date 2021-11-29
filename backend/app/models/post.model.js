@@ -1,9 +1,11 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const InventorySchema = new mongoose.Schema({
-    id: Number,
-    title: String,
-    author: String
+const PostSchema = new mongoose.Schema({
+  title: String,
+  date: Date,
+  location: String,
+  neighborhood: String,
+  description: String,
 });
 
-module.exports = mongoose.model('Inventory', InventorySchema);
+module.exports = mongoose.model("Post", PostSchema);
