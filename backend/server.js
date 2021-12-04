@@ -1,30 +1,33 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
-app.use(bodyParser.json())
-require('./app/models/inventory.model.js');
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-require('dotenv').config();
-const mongoose = require('mongoose');
+app.use(cors());
+app.use(bodyParser.json());
+require("./app/models/post.model.js");
+
+require("dotenv").config();
+const mongoose = require("mongoose");
 
 mongoose.connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-
-mongoose.connection
-.on('open', () => {
-    console.log('Mongoose connection open');
-})
-.on('error', (err) => {
-    console.log(`Connection error: ${err.message}`);
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
-require('./app/routes/inventory.router.js')(app);
+mongoose.connection
+  .on("open", () => {
+    console.log("Mongoose connection open");
+  })
+  .on("error", (err) => {
+    console.log(`Connection error: ${err.message}`);
+  });
 
-const server = app.listen(8080, function(){
-    const host = server.address().address
-    const port = server.address().port
+require("./app/routes/post.router.js")(app);
 
-    console.log("App listening at http://%s:%s", host, port)
-})
+const server = app.listen(8080, function () {
+  const host = server.address().address;
+  const port = server.address().port;
+
+  console.log("App is listening at http://%s:%s", host, port);
+});
