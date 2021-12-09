@@ -57,7 +57,11 @@ class PostEdit extends Component {
   render() {
     const { post } = this.state;
     const title = (
-      <h2 className="mt-3">{post._id ? "Edit Post" : "Add Post"}</h2>
+      <h2 className="mt-3">
+        {post._id
+          ? "Edit Post"
+          : "What would you like to report today, first name?"}
+      </h2>
     );
 
     return (
@@ -110,13 +114,19 @@ class PostEdit extends Component {
                 Neighborhood
               </Label>
               <Input
-                type="text"
-                name="neighborhood"
+                ame="neighborhood"
                 id="neighborhood"
                 value={post.neighborhood || ""}
                 onChange={this.handleChange}
                 autoComplete="neighborhood"
-              />
+                type="select"
+              >
+                <option>Hayes Valley</option>
+                <option>SOMA</option>
+                <option>Marina</option>
+                <option>Financial District</option>
+                <option>Embarcadero</option>
+              </Input>
             </FormGroup>
             <FormGroup>
               <Label for="description" className="h5 mt-3">

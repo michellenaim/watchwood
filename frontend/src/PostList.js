@@ -41,30 +41,60 @@ class PostList extends Component {
     }
     const postList = posts.map((post) => {
       return (
-        <tr key={post._id}>
-          <td style={{ whiteSpace: "nowrap" }}>{post.title}</td>
-          <td>{post.date}</td>
-          <td>{post.location}</td>
-          <td>{post.neighborhood}</td>
-          <td>{post.description}</td>
-          <ButtonGroup>
-            <Button
-              size="sm"
-              color="primary"
-              tag={Link}
-              to={"/post/" + post._id}
-            >
-              Edit
-            </Button>
-            <Button
-              size="sm"
-              color="danger"
-              onClick={() => this.removeInv(post._id)}
-            >
-              Delete
-            </Button>
-          </ButtonGroup>
-        </tr>
+        <div key={post._id} className="border border-info rounded my-4">
+          <div className="p-4">
+            <div className="d-flex justify-content-between">
+              <h4>{post.title}</h4>
+              <h4>{post.date}</h4>
+            </div>
+            <div className="d-flex">
+              <p style={{ marginRight: "5px" }}>{post.location}</p>
+              <p> - {post.neighborhood}</p>
+            </div>
+            <p>{post.description}</p>
+            <div className="d-flex justify-content-end">
+              <Button
+                size="sm"
+                color="primary"
+                tag={Link}
+                to={"/post/" + post._id}
+              >
+                Edit
+              </Button>
+              <Button
+                size="sm"
+                color="danger"
+                onClick={() => this.removeInv(post._id)}
+              >
+                Delete
+              </Button>
+            </div>
+          </div>
+        </div>
+        // <tr key={post._id}>
+        //   <td style={{ whiteSpace: "nowrap" }}>{post.title}</td>
+        //   <td>{post.date}</td>
+        //   <td>{post.location}</td>
+        //   <td>{post.neighborhood}</td>
+        //   <td>{post.description}</td>
+        //   <ButtonGroup>
+        //     <Button
+        //       size="sm"
+        //       color="primary"
+        //       tag={Link}
+        //       to={"/post/" + post._id}
+        //     >
+        //       Edit
+        //     </Button>
+        //     <Button
+        //       size="sm"
+        //       color="danger"
+        //       onClick={() => this.removeInv(post._id)}
+        //     >
+        //       Delete
+        //     </Button>
+        //   </ButtonGroup>
+        // </tr>
       );
     });
     return (
@@ -77,7 +107,7 @@ class PostList extends Component {
             </Button>
           </div>
           <h3>Post List</h3>
-          <Table className="mt-4">
+          {/* <Table className="mt-4">
             <thead>
               <tr>
                 <th width="20%">Title</th>
@@ -88,8 +118,9 @@ class PostList extends Component {
                 <th width="15%">Actions</th>
               </tr>
             </thead>
-            <tbody>{postList}</tbody>
-          </Table>
+            <tbody></tbody>
+          </Table> */}
+          <p>{postList}</p>
         </Container>
       </div>
     );

@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+#login-form {
+  border-right: lightgray 3px solid;
+}
+
+@media screen and (max-width: 992px) {
+  #login-form {
+    border: none;
+  }
+}
+
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #24d8de !important;
+}
+
+.btn-primary:hover {
+  background-color: #006288 !important;
+}
