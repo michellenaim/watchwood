@@ -43,7 +43,7 @@ export default class AppNavbar extends Component {
               variant="outline-primary"
               size="sm"
               tag={Link}
-              to="/login"
+              href="/login"
             >
               Sign Up
             </Button>

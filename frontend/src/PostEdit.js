@@ -60,9 +60,15 @@ class PostEdit extends Component {
       <h2 className="mt-3">
         {post._id
           ? "Edit Post"
-          : "What would you like to report today, first name?"}
+          : `What would you like to report today, ${
+              JSON.parse(localStorage.getItem("currentUser")).firstName
+            }?`}
       </h2>
     );
+
+    // {localStorage.getItem("currentUser") !== null && (
+    // <p>{JSON.parse(localStorage.getItem("currentUser")).firstName}</p>
+    // )}
 
     return (
       <div>

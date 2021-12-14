@@ -101,11 +101,18 @@ class PostList extends Component {
       <div>
         <AppNavbar />
         <Container fluid>
-          <div className="float-right">
-            <Button color="success" className="my-4" tag={Link} to="/post/new">
-              Add post
-            </Button>
-          </div>
+          {localStorage.getItem("currentUser") !== null && (
+            <div className="float-right">
+              <Button
+                color="success"
+                className="my-4"
+                tag={Link}
+                to="/post/new"
+              >
+                Add post
+              </Button>
+            </div>
+          )}
           <h3>Post List</h3>
           {/* <Table className="mt-4">
             <thead>
