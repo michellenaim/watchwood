@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AppNavbar from "./Navbar";
 import { Button, ButtonGroup, Container, Table } from "reactstrap";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 class PostList extends Component {
   constructor(props) {
@@ -40,35 +41,39 @@ class PostList extends Component {
       return <p>Loading...</p>;
     }
     const postList = posts.map((post) => {
+      const formattedDate = moment(post.date).format("MMMM Do YYYY, h:mma");
       return (
         <div key={post._id} className="border border-info rounded my-4">
           <div className="p-4">
             <div className="d-flex justify-content-between">
               <h4>{post.title}</h4>
-              <h4>{post.date}</h4>
+              <h5>{formattedDate}</h5>
             </div>
             <div className="d-flex">
               <p style={{ marginRight: "5px" }}>{post.location}</p>
               <p> - {post.neighborhood}</p>
             </div>
             <p>{post.description}</p>
-            <div className="d-flex justify-content-end">
-              <Button
-                size="sm"
-                color="primary"
-                tag={Link}
-                to={"/post/" + post._id}
-              >
-                Edit
-              </Button>
-              <Button
-                size="sm"
-                color="danger"
-                onClick={() => this.removeInv(post._id)}
-              >
-                Delete
-              </Button>
-            </div>
+            {JSON.parse(localStorage.getItem("currentUser")).firstName ===
+              post.user && (
+              <div className="d-flex justify-content-end">
+                <Button
+                  size="sm"
+                  color="primary"
+                  tag={Link}
+                  to={"/post/" + post._id}
+                >
+                  Edit
+                </Button>
+                <Button
+                  size="sm"
+                  color="danger"
+                  onClick={() => this.removeInv(post._id)}
+                >
+                  Delete
+                </Button>
+              </div>
+            )}
           </div>
         </div>
         // <tr key={post._id}>
@@ -100,7 +105,7 @@ class PostList extends Component {
     return (
       <div>
         <AppNavbar />
-        <Container fluid>
+        <Container fluid className="mt-4">
           {localStorage.getItem("currentUser") !== null && (
             <div className="float-right">
               <Button

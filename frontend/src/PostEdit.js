@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import AppNavbar from "./Navbar";
 import { Button, Form, Container, FormGroup, Input, Label } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
@@ -10,6 +10,7 @@ class PostEdit extends Component {
     location: "",
     neighborhood: "",
     description: "",
+    user: JSON.parse(localStorage.getItem("currentUser")).firstName,
   };
 
   constructor(props) {
@@ -69,7 +70,7 @@ class PostEdit extends Component {
     // {localStorage.getItem("currentUser") !== null && (
     // <p>{JSON.parse(localStorage.getItem("currentUser")).firstName}</p>
     // )}
-
+    console.log(post);
     return (
       <div>
         <AppNavbar />
@@ -87,6 +88,7 @@ class PostEdit extends Component {
                 value={post.title || ""}
                 onChange={this.handleChange}
                 autoComplete="title"
+                required
               />
             </FormGroup>
             <FormGroup>
@@ -94,12 +96,13 @@ class PostEdit extends Component {
                 Date
               </Label>
               <Input
-                type="date"
+                type="datetime-local"
                 name="date"
                 id="date"
                 value={post.date || ""}
                 onChange={this.handleChange}
                 autoComplete="date"
+                required
               />
             </FormGroup>
             <FormGroup>
@@ -113,6 +116,7 @@ class PostEdit extends Component {
                 value={post.location || ""}
                 onChange={this.handleChange}
                 autoComplete="location"
+                required
               />
             </FormGroup>
             <FormGroup>
@@ -120,18 +124,29 @@ class PostEdit extends Component {
                 Neighborhood
               </Label>
               <Input
-                ame="neighborhood"
+                name="neighborhood"
                 id="neighborhood"
                 value={post.neighborhood || ""}
                 onChange={this.handleChange}
                 autoComplete="neighborhood"
                 type="select"
               >
-                <option>Hayes Valley</option>
-                <option>SOMA</option>
-                <option>Marina</option>
-                <option>Financial District</option>
-                <option>Embarcadero</option>
+                <option value="Castro">Castro</option>
+                <option value="Chinatown">Chinatown</option>
+                <option value="Fillmore">Fillmore</option>
+                <option value="Financial District">Financial District</option>
+                <option value="SOMA">SOMA</option>
+                <option value="Haight-Ashbury">Haight-Ashbury</option>
+                <option value="Japantown">Japantown</option>
+                <option value="Hayes Valley">Hayes Valley</option>
+                <option value="Marina">Marina</option>
+                <option value="Mission">Mission</option>
+                <option value="Nob Hill">Nob Hill</option>
+                <option value="Noe Valley">Noe Valley</option>
+                <option value="North Beach">North Beach</option>
+                <option value="Richmond">Richmond</option>
+                <option value="Sunset">Sunset</option>
+                <option value="Union Square">Union Square</option>
               </Input>
             </FormGroup>
             <FormGroup>
@@ -145,6 +160,7 @@ class PostEdit extends Component {
                 value={post.description || ""}
                 onChange={this.handleChange}
                 autoComplete="description"
+                required
               />
             </FormGroup>
             <FormGroup>

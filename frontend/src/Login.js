@@ -42,6 +42,7 @@ function Login() {
       // localStorage.setItem("registrationPassword", JSON.stringify(password));
       localStorage.setItem("currentUser", JSON.stringify(currentUser));
       console.log("Saved in Local Storage");
+      history.push("/");
     }
   }
 

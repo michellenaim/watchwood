@@ -9,6 +9,7 @@ exports.createPost = (req, res) => {
     location: req.body.location,
     neighborhood: req.body.neighborhood,
     description: req.body.description,
+    user: req.body.user,
   });
   post
     .save()
@@ -87,6 +88,7 @@ exports.updatePost = (req, res) => {
       location: req.body.location,
       neighborhood: req.body.neighborhood,
       description: req.body.description,
+      user: req.body.description,
     },
     { new: false }
   )

@@ -35,18 +35,35 @@ export default class AppNavbar extends Component {
             <Nav.Link href="/" style={{ marginLeft: "10px" }}>
               Home
             </Nav.Link>
-            <Nav.Link href="/login" style={{ marginLeft: "10px" }}>
-              Login
-            </Nav.Link>
-            <Button
-              style={{ marginLeft: "10px" }}
-              variant="outline-primary"
-              size="sm"
-              tag={Link}
-              href="/login"
-            >
-              Sign Up
-            </Button>
+
+            {localStorage.getItem("currentUser") === null && (
+              <>
+                <Nav.Link href="/login" style={{ marginLeft: "10px" }}>
+                  Login
+                </Nav.Link>
+                <Button
+                  style={{ marginLeft: "10px" }}
+                  variant="outline-primary"
+                  size="sm"
+                  tag={Link}
+                  href="/login"
+                >
+                  Sign Up
+                </Button>
+              </>
+            )}
+            {localStorage.getItem("currentUser") !== null && (
+              <Button
+                style={{ marginLeft: "10px" }}
+                variant="outline-primary"
+                size="sm"
+                tag={Link}
+                href="/"
+                onClick={() => localStorage.clear()}
+              >
+                Log out
+              </Button>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

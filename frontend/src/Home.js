@@ -25,13 +25,16 @@ class Home extends Component {
     return (
       <div>
         <AppNavbar />
-        <Container fluid>
-          <Button className="m-5 nav bg-light">
-            <Link to="/posts" className="nav-link">
-              Manage Post List
-            </Link>
-          </Button>
-        </Container>
+        {localStorage.getItem("currentUser") !== null && (
+          <Container fluid>
+            <Button className="m-5 nav bg-light">
+              <Link to="/posts" className="nav-link">
+                Manage Post List
+              </Link>
+            </Button>
+          </Container>
+        )}
+        {localStorage.getItem("currentUser") === null && <h1>Hello!</h1>}
       </div>
     );
   }
