@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Image,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  Container,
-  Button,
-} from "react-bootstrap";
+import { Nav, Navbar, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 

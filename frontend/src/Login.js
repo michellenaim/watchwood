@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import AppNavbar from "./Navbar";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -8,14 +8,13 @@ function Login() {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [flag, setFlag] = useState(false);
-  const [login, setLogin] = useState(false);
 
-  const [emaillog, setEmaillog] = useState(" ");
-  const [passwordlog, setPasswordlog] = useState(" ");
+  const [usernameLog, setUsernameLog] = useState(" ");
+  const [passwordLog, setPasswordLog] = useState(" ");
 
   const [flagLogin, setFlagLogin] = useState(false);
 
@@ -24,7 +23,7 @@ function Login() {
   function handleFormSubmitRegister(e) {
     e.preventDefault();
 
-    if (!firstName || !lastName || !email || !password) {
+    if (!firstName || !lastName || !username || !password) {
       setFlag(true);
     } else {
       setFlag(false);
@@ -32,13 +31,13 @@ function Login() {
       const currentUser = {
         firstName: firstName,
         lastName: lastName,
-        email: email,
+        username: username,
         password: password,
       };
 
       // localStorage.setItem("registrationFirstName", JSON.stringify(firstName));
       // localStorage.setItem("registrationLastName", JSON.stringify(lastName));
-      // localStorage.setItem("registrationEmail", JSON.stringify(email));
+      // localStorage.setItem("registrationEmail", JSON.stringify(username));
       // localStorage.setItem("registrationPassword", JSON.stringify(password));
       localStorage.setItem("currentUser", JSON.stringify(currentUser));
       console.log("Saved in Local Storage");
@@ -56,10 +55,10 @@ function Login() {
       let pass = localStorage.getItem("registrationPassword").replace(/"/g, "");
       let mail = localStorage.getItem("registrationEmail").replace(/"/g, "");
 
-      if (!emaillog || !passwordlog) {
+      if (!usernameLog || !passwordLog) {
         setFlagLogin(true);
         console.log("EMPTY");
-      } else if (passwordlog !== pass || emaillog !== mail) {
+      } else if (passwordLog !== pass || usernameLog !== mail) {
         setFlagLogin(true);
       } else {
         // setHome(!home);
@@ -84,7 +83,7 @@ function Login() {
               <Form.Control
                 type="text"
                 placeholder="Enter username"
-                onChange={(event) => setEmaillog(event.target.value)}
+                onChange={(event) => setUsernameLog(event.target.value)}
               />
             </Form.Group>
 
@@ -93,7 +92,7 @@ function Login() {
               <Form.Control
                 type="password"
                 placeholder="Password"
-                onChange={(event) => setPasswordlog(event.target.value)}
+                onChange={(event) => setPasswordLog(event.target.value)}
               />
             </Form.Group>
             <div className="d-flex justify-content-end m-4">
@@ -128,11 +127,11 @@ function Login() {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email</Form.Label>
+              <Form.Label>Username</Form.Label>
               <Form.Control
-                type="email"
-                placeholder="Enter email"
-                onChange={(event) => setEmail(event.target.value)}
+                type="text"
+                placeholder="Enter username"
+                onChange={(event) => setUsername(event.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">

@@ -6,7 +6,7 @@ const PostSchema = new mongoose.Schema({
   location: String,
   neighborhood: String,
   description: String,
-  user: String,
+  username: String,
 });
 
 module.exports = mongoose.model("Post", PostSchema);

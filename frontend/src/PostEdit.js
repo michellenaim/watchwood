@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import AppNavbar from "./Navbar";
 import { Button, Form, Container, FormGroup, Input, Label } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
@@ -10,7 +10,7 @@ class PostEdit extends Component {
     location: "",
     neighborhood: "",
     description: "",
-    user: JSON.parse(localStorage.getItem("currentUser")).firstName,
+    username: JSON.parse(localStorage.getItem("currentUser")).username,
   };
 
   constructor(props) {

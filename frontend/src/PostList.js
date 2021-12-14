@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AppNavbar from "./Navbar";
-import { Button, ButtonGroup, Container, Table } from "reactstrap";
+import { Button, Container } from "reactstrap";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
@@ -42,6 +42,7 @@ class PostList extends Component {
     }
     const postList = posts.map((post) => {
       const formattedDate = moment(post.date).format("MMMM Do YYYY, h:mma");
+
       return (
         <div key={post._id} className="border border-info rounded my-4">
           <div className="p-4">
@@ -54,8 +55,8 @@ class PostList extends Component {
               <p> - {post.neighborhood}</p>
             </div>
             <p>{post.description}</p>
-            {JSON.parse(localStorage.getItem("currentUser")).firstName ===
-              post.user && (
+            {JSON.parse(localStorage.getItem("currentUser")).username ===
+              post.username && (
               <div className="d-flex justify-content-end">
                 <Button
                   size="sm"
