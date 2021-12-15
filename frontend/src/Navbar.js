@@ -24,7 +24,7 @@ export default class AppNavbar extends Component {
           className="justify-content-end mr-4"
           style={{ marginRight: "30px" }}
         >
-          <Nav activeKey="/">
+          <Nav>
             <Nav.Link href="/" style={{ marginLeft: "10px" }}>
               Home
             </Nav.Link>

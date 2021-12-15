@@ -70,7 +70,6 @@ class PostEdit extends Component {
     // {localStorage.getItem("currentUser") !== null && (
     // <p>{JSON.parse(localStorage.getItem("currentUser")).firstName}</p>
     // )}
-    console.log(post);
     return (
       <div>
         <AppNavbar />
