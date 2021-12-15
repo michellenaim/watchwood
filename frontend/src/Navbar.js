@@ -7,12 +7,12 @@ export default class AppNavbar extends Component {
   render() {
     return (
       <Navbar bg="dark" expand="lg" className="navbar-header">
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/" style={{ marginLeft: "15px" }}>
           <img
             src="/watchwood-logo.png"
             className="d-inline-block align-top"
             alt="watchwood-logo"
-            height="120"
+            height="90"
           />
         </Navbar.Brand>
         <Navbar.Toggle
