@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import AppNavbar from "./Navbar";
 import { Button, Form, Container, FormGroup, Input, Label } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
 
@@ -72,7 +71,6 @@ class PostEdit extends Component {
     // )}
     return (
       <div>
-        <AppNavbar />
         <Container>
           {title}
           <Form onSubmit={this.handleSubmit}>
@@ -162,8 +160,11 @@ class PostEdit extends Component {
                 required
               />
             </FormGroup>
-            <FormGroup>
-              <Button color="primary" type="submit" className="mt-3">
+            <FormGroup
+              className="d-flex justify-content-between"
+              style={{ width: "10rem" }}
+            >
+              <Button type="submit" className="mt-3 btn-normal">
                 Save
               </Button>
               <Button color="secondary" className="mt-3" tag={Link} to="/posts">

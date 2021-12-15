@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import AppNavbar from "./Navbar";
 import { Button, Container } from "reactstrap";
 import { FloatingLabel, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -67,7 +66,7 @@ class PostList extends Component {
       const formattedDate = moment(post.date).format("MMMM Do YYYY, h:mma");
 
       return (
-        <div key={post._id} className="border border-info rounded my-4">
+        <div key={post._id} className="my-4 post">
           <div className="p-4">
             <div className="d-flex justify-content-between">
               <h4>{post.title}</h4>
@@ -105,7 +104,6 @@ class PostList extends Component {
     });
     return (
       <div>
-        <AppNavbar />
         <h3 className="mt-3 d-flex justify-content-center">
           Here's what's been going on around you...
         </h3>
@@ -118,7 +116,7 @@ class PostList extends Component {
               <FloatingLabel
                 controlId="floatingSelect"
                 label="Filter Posts By Neighborhood"
-                style={{ minWidth: "15rem", marginTop: "12px" }}
+                style={{ minWidth: "15rem", marginTop: "13px" }}
               >
                 <Form.Select
                   aria-label="Floating label select example"
@@ -143,12 +141,7 @@ class PostList extends Component {
                   <option value="Union Square">Union Square</option>
                 </Form.Select>
               </FloatingLabel>
-              <Button
-                color="success"
-                className="my-4"
-                tag={Link}
-                to="/post/new"
-              >
+              <Button className="my-4 btn-normal" tag={Link} to="/post/new">
                 Add post
               </Button>
             </div>

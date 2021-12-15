@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AppNavbar from "./Navbar";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
@@ -72,8 +71,6 @@ function Login() {
 
   return (
     <div>
-      <AppNavbar />
-
       <div className="row pt-5 mx-5 justify-content-center">
         <div id="login-form" className="col-12 col-lg-5">
           <h3 align="center">Login</h3>
@@ -96,7 +93,7 @@ function Login() {
               />
             </Form.Group>
             <div className="d-flex justify-content-end m-4">
-              <Button variant="primary" type="submit">
+              <Button className="btn-normal" type="submit">
                 Submit
               </Button>
             </div>
@@ -143,7 +140,7 @@ function Login() {
               />
             </Form.Group>
             <div className="d-flex justify-content-end m-4">
-              <Button variant="primary" type="submit">
+              <Button className="btn-normal" type="submit">
                 Submit
               </Button>
             </div>

@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default class AppNavbar extends Component {
   render() {
     return (
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="dark" expand="lg" className="navbar-header">
         <Navbar.Brand href="/">
           <img
             src="/watchwood-logo.png"
@@ -25,18 +25,26 @@ export default class AppNavbar extends Component {
           style={{ marginRight: "30px" }}
         >
           <Nav>
-            <Nav.Link href="/" style={{ marginLeft: "10px" }}>
+            <Nav.Link
+              href="/"
+              style={{ marginLeft: "10px" }}
+              className="nav-item"
+            >
               Home
             </Nav.Link>
 
             {localStorage.getItem("currentUser") === null && (
               <>
-                <Nav.Link href="/login" style={{ marginLeft: "10px" }}>
+                <Nav.Link
+                  href="/login"
+                  style={{ marginLeft: "10px" }}
+                  className="nav-item"
+                >
                   Login
                 </Nav.Link>
                 <Button
                   style={{ marginLeft: "10px" }}
-                  variant="outline-primary"
+                  className="signup-btn"
                   size="sm"
                   tag={Link}
                   href="/login"
@@ -48,7 +56,7 @@ export default class AppNavbar extends Component {
             {localStorage.getItem("currentUser") !== null && (
               <Button
                 style={{ marginLeft: "10px" }}
-                variant="outline-primary"
+                className="signup-btn"
                 size="sm"
                 tag={Link}
                 href="/"

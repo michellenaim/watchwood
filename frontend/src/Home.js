@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import AppNavbar from "./Navbar";
 import { Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -24,7 +23,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <AppNavbar />
         {localStorage.getItem("currentUser") !== null && (
           <Container fluid>
             <Button className="m-5 nav bg-light">
