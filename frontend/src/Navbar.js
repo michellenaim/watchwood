@@ -7,7 +7,7 @@ export default class AppNavbar extends Component {
   render() {
     return (
       <Navbar bg="dark" expand="lg" className="navbar-header">
-        <Navbar.Brand href="/" style={{ marginLeft: "15px" }}>
+        <Navbar.Brand href="/posts" style={{ marginLeft: "15px" }}>
           <img
             src="/watchwood-logo.png"
             className="d-inline-block align-top"
@@ -26,7 +26,7 @@ export default class AppNavbar extends Component {
         >
           <Nav>
             <Nav.Link
-              href="/"
+              href="/posts"
               style={{ marginLeft: "10px" }}
               className="nav-item"
             >
@@ -59,7 +59,7 @@ export default class AppNavbar extends Component {
                 className="signup-btn"
                 size="sm"
                 tag={Link}
-                href="/"
+                href="/posts"
                 onClick={() => localStorage.clear()}
               >
                 Log out

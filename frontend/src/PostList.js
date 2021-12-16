@@ -66,7 +66,7 @@ class PostList extends Component {
       const formattedDate = moment(post.date).format("MMMM Do YYYY, h:mma");
 
       return (
-        <div key={post._id} className="my-4 post">
+        <div key={post._id} className="my-3 post">
           <div className="p-4">
             <div className="d-flex justify-content-between">
               <h4>{post.title}</h4>
@@ -78,10 +78,11 @@ class PostList extends Component {
             </div>
             <p>{post.description}</p>
             <p className="d-flex justify-content-end">By {post.username}</p>
-            {JSON.parse(localStorage.getItem("currentUser")).username ===
-              post.username && (
-              <div className="d-flex justify-content-end">
-                {/* <Button
+            {localStorage.getItem("currentUser") !== null &&
+              JSON.parse(localStorage.getItem("currentUser")).username ===
+                post.username && (
+                <div className="d-flex justify-content-end">
+                  {/* <Button
                   size="sm"
                   color="primary"
                   tag={Link}
@@ -89,28 +90,51 @@ class PostList extends Component {
                 >
                   Edit
                 </Button> */}
-                <Button
-                  size="sm"
-                  color="danger"
-                  onClick={() => this.removeInv(post._id)}
-                >
-                  Delete
-                </Button>
-              </div>
-            )}
+                  <Button
+                    size="sm"
+                    color="danger"
+                    onClick={() => this.removeInv(post._id)}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              )}
           </div>
         </div>
       );
     });
     return (
       <div>
-        <h3 className="mt-3 d-flex justify-content-center">
-          Here's what's been going on around you...
-        </h3>
+        <div className="d-flex">
+          {localStorage.getItem("currentUser") !== null && (
+            <>
+              <h3 className="d-flex justify-content-center m-auto p-4">
+                Welcome{" "}
+                {JSON.parse(localStorage.getItem("currentUser")).firstName}!
+                Always be on the lookout.
+              </h3>
+              <Button className="btn-normal add-post" tag={Link} to="/post/new">
+                Add post
+              </Button>
+            </>
+          )}
+          {localStorage.getItem("currentUser") === null && (
+            <h3 className="d-flex justify-content-center m-auto p-4">
+              What's happening around you?
+            </h3>
+          )}
+        </div>
+        <div>
+          <img
+            className="post-image"
+            src="./post-image.jpg"
+            alt="san-francisco"
+          />
+        </div>
         <Container fluid className="mt-4">
           {localStorage.getItem("currentUser") !== null && (
             <div
-              className="d-flex justify-content-between"
+              className="d-flex justify-content-between mb-4"
               style={{ width: "23rem" }}
             >
               <FloatingLabel
@@ -141,9 +165,6 @@ class PostList extends Component {
                   <option value="Union Square">Union Square</option>
                 </Form.Select>
               </FloatingLabel>
-              <Button className="my-4 btn-normal" tag={Link} to="/post/new">
-                Add post
-              </Button>
             </div>
           )}
           <p>{postList}</p>

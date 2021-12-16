@@ -118,3 +118,14 @@
 .content-wrap {
   padding-bottom: 6rem;
 }
+
+.post-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.add-post {
+  position: absolute;
+  right: 2%;
+  margin-top: 20px;
+}
