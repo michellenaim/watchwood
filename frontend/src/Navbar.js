@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default class AppNavbar extends Component {
   render() {
     return (
-      <Navbar bg="dark" expand="lg" className="navbar-header">
+      <Navbar expand="lg" className="navbar-header">
         <Navbar.Brand href="/posts" style={{ marginLeft: "15px" }}>
           <img
             src="/watchwood-logo.png"

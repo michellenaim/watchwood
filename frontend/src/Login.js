@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import AppNavbar from "./Navbar";
 
 function Login() {
   const history = useHistory();
@@ -17,8 +18,6 @@ function Login() {
 
   const [flagLogin, setFlagLogin] = useState(false);
 
-  // const [home, setHome] = useState(true);
-
   function handleFormSubmitRegister(e) {
     e.preventDefault();
 
@@ -34,33 +33,24 @@ function Login() {
         password: password,
       };
 
-      // localStorage.setItem("registrationFirstName", JSON.stringify(firstName));
-      // localStorage.setItem("registrationLastName", JSON.stringify(lastName));
-      // localStorage.setItem("registrationEmail", JSON.stringify(username));
-      // localStorage.setItem("registrationPassword", JSON.stringify(password));
       localStorage.setItem("currentUser", JSON.stringify(currentUser));
       console.log("Saved in Local Storage");
-      history.push("/");
+      history.push("/posts");
     }
   }
 
   function handleFormSubmitLogin(e) {
     e.preventDefault();
 
-    if (
-      localStorage.getItem("registrationPassword") &&
-      localStorage.getItem("registrationPassword")
-    ) {
-      let pass = localStorage.getItem("registrationPassword").replace(/"/g, "");
-      let mail = localStorage.getItem("registrationEmail").replace(/"/g, "");
+    if (localStorage.getItem("currentUser")) {
+      let pass = JSON.parse(localStorage.getItem("currentUser")).password;
+      let username = JSON.parse(localStorage.getItem("currentUser")).username;
 
       if (!usernameLog || !passwordLog) {
         setFlagLogin(true);
-        console.log("EMPTY");
-      } else if (passwordLog !== pass || usernameLog !== mail) {
+      } else if (passwordLog !== pass || usernameLog !== username) {
         setFlagLogin(true);
       } else {
-        // setHome(!home);
         setFlagLogin(false);
         history.push("/posts");
       }
@@ -71,6 +61,7 @@ function Login() {
 
   return (
     <div>
+      <AppNavbar />
       <div className="row pt-5 mx-5 justify-content-center">
         <div id="login-form" className="col-12 col-lg-5">
           <h3 align="center">Login</h3>

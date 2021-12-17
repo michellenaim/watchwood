@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, Container, FormGroup, Input, Label } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
+import AppNavbar from "./Navbar";
 
 class PostEdit extends Component {
   emptyPost = {
@@ -66,113 +67,119 @@ class PostEdit extends Component {
       </h2>
     );
 
-    // {localStorage.getItem("currentUser") !== null && (
-    // <p>{JSON.parse(localStorage.getItem("currentUser")).firstName}</p>
-    // )}
     return (
       <div>
-        <Container>
-          {title}
-          <Form onSubmit={this.handleSubmit}>
-            <FormGroup>
-              <Label for="title" className="h5 mt-3">
-                Title
-              </Label>
-              <Input
-                type="text"
-                name="title"
-                id="title"
-                value={post.title || ""}
-                onChange={this.handleChange}
-                autoComplete="title"
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="date" className="h5 mt-3">
-                Date
-              </Label>
-              <Input
-                type="datetime-local"
-                name="date"
-                id="date"
-                value={post.date || ""}
-                onChange={this.handleChange}
-                autoComplete="date"
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="location" className="h5 mt-3">
-                Location
-              </Label>
-              <Input
-                type="text"
-                name="location"
-                id="location"
-                value={post.location || ""}
-                onChange={this.handleChange}
-                autoComplete="location"
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="neighborhood" className="h5 mt-3">
-                Neighborhood
-              </Label>
-              <Input
-                name="neighborhood"
-                id="neighborhood"
-                value={post.neighborhood || ""}
-                onChange={this.handleChange}
-                autoComplete="neighborhood"
-                type="select"
+        <AppNavbar />
+
+        <div className="mt-5">
+          <Container>
+            {title}
+            <Form onSubmit={this.handleSubmit}>
+              <FormGroup>
+                <Label for="title" className="h5 mt-3">
+                  Title
+                </Label>
+                <Input
+                  type="text"
+                  name="title"
+                  id="title"
+                  value={post.title || ""}
+                  onChange={this.handleChange}
+                  autoComplete="title"
+                  required
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="date" className="h5 mt-3">
+                  Date
+                </Label>
+                <Input
+                  type="datetime-local"
+                  name="date"
+                  id="date"
+                  value={post.date || ""}
+                  onChange={this.handleChange}
+                  autoComplete="date"
+                  required
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="location" className="h5 mt-3">
+                  Location
+                </Label>
+                <Input
+                  type="text"
+                  name="location"
+                  id="location"
+                  value={post.location || ""}
+                  onChange={this.handleChange}
+                  autoComplete="location"
+                  required
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="neighborhood" className="h5 mt-3">
+                  Neighborhood
+                </Label>
+                <Input
+                  name="neighborhood"
+                  id="neighborhood"
+                  value={post.neighborhood || ""}
+                  onChange={this.handleChange}
+                  autoComplete="neighborhood"
+                  type="select"
+                >
+                  <option value="Castro">Castro</option>
+                  <option value="Chinatown">Chinatown</option>
+                  <option value="Fillmore">Fillmore</option>
+                  <option value="Financial District">Financial District</option>
+                  <option value="SOMA">SOMA</option>
+                  <option value="Haight-Ashbury">Haight-Ashbury</option>
+                  <option value="Japantown">Japantown</option>
+                  <option value="Hayes Valley">Hayes Valley</option>
+                  <option value="Marina">Marina</option>
+                  <option value="Mission">Mission</option>
+                  <option value="Nob Hill">Nob Hill</option>
+                  <option value="Noe Valley">Noe Valley</option>
+                  <option value="North Beach">North Beach</option>
+                  <option value="Richmond">Richmond</option>
+                  <option value="Sunset">Sunset</option>
+                  <option value="Union Square">Union Square</option>
+                </Input>
+              </FormGroup>
+              <FormGroup>
+                <Label for="description" className="h5 mt-3">
+                  Description
+                </Label>
+                <Input
+                  type="text"
+                  name="description"
+                  id="description"
+                  value={post.description || ""}
+                  onChange={this.handleChange}
+                  autoComplete="description"
+                  required
+                />
+              </FormGroup>
+              <FormGroup
+                className="d-flex justify-content-between"
+                style={{ width: "10rem" }}
               >
-                <option value="Castro">Castro</option>
-                <option value="Chinatown">Chinatown</option>
-                <option value="Fillmore">Fillmore</option>
-                <option value="Financial District">Financial District</option>
-                <option value="SOMA">SOMA</option>
-                <option value="Haight-Ashbury">Haight-Ashbury</option>
-                <option value="Japantown">Japantown</option>
-                <option value="Hayes Valley">Hayes Valley</option>
-                <option value="Marina">Marina</option>
-                <option value="Mission">Mission</option>
-                <option value="Nob Hill">Nob Hill</option>
-                <option value="Noe Valley">Noe Valley</option>
-                <option value="North Beach">North Beach</option>
-                <option value="Richmond">Richmond</option>
-                <option value="Sunset">Sunset</option>
-                <option value="Union Square">Union Square</option>
-              </Input>
-            </FormGroup>
-            <FormGroup>
-              <Label for="description" className="h5 mt-3">
-                Description
-              </Label>
-              <Input
-                type="text"
-                name="description"
-                id="description"
-                value={post.description || ""}
-                onChange={this.handleChange}
-                autoComplete="description"
-                required
-              />
-            </FormGroup>
-            <FormGroup
-              className="d-flex justify-content-between"
-              style={{ width: "10rem" }}
-            >
-              <Button type="submit" className="mt-3 btn-normal">
-                Save
-              </Button>
-              <Button color="secondary" className="mt-3" tag={Link} to="/posts">
-                Cancel
-              </Button>
-            </FormGroup>
-          </Form>
-        </Container>
+                <Button type="submit" className="mt-3 btn-normal">
+                  Save
+                </Button>
+                <Button
+                  color="secondary"
+                  className="mt-3"
+                  tag={Link}
+                  to="/posts"
+                >
+                  Cancel
+                </Button>
+              </FormGroup>
+            </Form>
+          </Container>
+        </div>
       </div>
     );
   }

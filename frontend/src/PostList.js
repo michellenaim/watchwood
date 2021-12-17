@@ -3,23 +3,21 @@ import { Button, Container } from "reactstrap";
 import { FloatingLabel, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import AppNavbar from "./Navbar";
 
 class PostList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
-      isLoading: true,
       filterOn: false,
     };
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
-
     fetch("http://localhost:8080/api/posts")
       .then((response) => response.json())
-      .then((data) => this.setState({ posts: data, isLoading: false }));
+      .then((data) => this.setState({ posts: data }));
   }
 
   removeInv = async (id) => {
@@ -56,12 +54,33 @@ class PostList extends Component {
     }
   };
 
-  render() {
-    const { posts, isLoading } = this.state;
-
-    if (isLoading) {
-      return <p>Loading...</p>;
+  sortByDate = (e) => {
+    if (e.target.value === "Ascending") {
+      fetch("http://localhost:8080/api/posts")
+        .then((response) => response.json())
+        .then(() =>
+          this.setState({
+            posts: this.state.posts.sort(
+              (a, b) => new Date(a.date) - new Date(b.date)
+            ),
+          })
+        );
+    } else {
+      fetch("http://localhost:8080/api/posts")
+        .then((response) => response.json())
+        .then(() =>
+          this.setState({
+            posts: this.state.posts.sort(
+              (a, b) => new Date(b.date) - new Date(a.date)
+            ),
+          })
+        );
     }
+  };
+
+  render() {
+    const { posts } = this.state;
+
     const postList = posts.map((post) => {
       const formattedDate = moment(post.date).format("MMMM Do YYYY, h:mma");
 
@@ -70,7 +89,7 @@ class PostList extends Component {
           <div className="p-4">
             <div className="d-flex justify-content-between">
               <h4>{post.title}</h4>
-              <h5>{formattedDate}</h5>
+              <h5 className="text-end">{formattedDate}</h5>
             </div>
             <div className="d-flex">
               <p style={{ marginRight: "5px" }}>{post.location}</p>
@@ -82,14 +101,6 @@ class PostList extends Component {
               JSON.parse(localStorage.getItem("currentUser")).username ===
                 post.username && (
                 <div className="d-flex justify-content-end">
-                  {/* <Button
-                  size="sm"
-                  color="primary"
-                  tag={Link}
-                  to={"/post/" + post._id}
-                >
-                  Edit
-                </Button> */}
                   <Button
                     size="sm"
                     color="danger"
@@ -103,11 +114,14 @@ class PostList extends Component {
         </div>
       );
     });
+
     return (
       <div>
-        <div className="d-flex">
+        <AppNavbar />
+
+        <>
           {localStorage.getItem("currentUser") !== null && (
-            <>
+            <div className="d-flex main-title">
               <h3 className="d-flex justify-content-center m-auto p-4">
                 Welcome{" "}
                 {JSON.parse(localStorage.getItem("currentUser")).firstName}!
@@ -116,14 +130,23 @@ class PostList extends Component {
               <Button className="btn-normal add-post" tag={Link} to="/post/new">
                 Add post
               </Button>
-            </>
+            </div>
           )}
           {localStorage.getItem("currentUser") === null && (
-            <h3 className="d-flex justify-content-center m-auto p-4">
+            <h3 className="d-flex justify-content-center m-auto p-4 sub-title">
               What's happening around you?
             </h3>
           )}
-        </div>
+        </>
+        {localStorage.getItem("currentUser") === null && (
+          <p className="d-flex justify-content-center px-4 sub-title">
+            Sign up or Login to report an incident
+          </p>
+        )}
+        <p className="d-flex justify-content-center px-4 sub-title text-center">
+          Stay up to date and help the community by reporting incidents that
+          happen around you.
+        </p>
         <div>
           <img
             className="post-image"
@@ -132,15 +155,16 @@ class PostList extends Component {
           />
         </div>
         <Container fluid className="mt-4">
-          {localStorage.getItem("currentUser") !== null && (
-            <div
-              className="d-flex justify-content-between mb-4"
-              style={{ width: "23rem" }}
-            >
+          <div className="d-flex justify-content-between">
+            <div className="mb-4 d-flex sorting-btn">
               <FloatingLabel
                 controlId="floatingSelect"
                 label="Filter Posts By Neighborhood"
-                style={{ minWidth: "15rem", marginTop: "13px" }}
+                style={{
+                  width: "15rem",
+                  marginTop: "13px",
+                  marginRight: "20px",
+                }}
               >
                 <Form.Select
                   aria-label="Floating label select example"
@@ -165,9 +189,34 @@ class PostList extends Component {
                   <option value="Union Square">Union Square</option>
                 </Form.Select>
               </FloatingLabel>
+              <FloatingLabel
+                controlId="floatingSelect"
+                label="Sort By Date"
+                style={{
+                  width: "15rem",
+                  marginTop: "13px",
+                }}
+              >
+                <Form.Select
+                  aria-label="Floating label select example"
+                  onChange={(e) => this.sortByDate(e)}
+                >
+                  <option value="Ascending">Ascending</option>
+                  <option value="Descending">Descending</option>
+                </Form.Select>
+              </FloatingLabel>
+            </div>
+            <p className="posts-number">
+              Total number of posts: {posts.length}
+            </p>
+          </div>
+          {posts.length > 0 ? (
+            <p>{postList}</p>
+          ) : (
+            <div className="d-flex justify-content-center p-4 no-posts m-4">
+              There are no posts yet
             </div>
           )}
-          <p>{postList}</p>
         </Container>
       </div>
     );
