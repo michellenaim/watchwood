@@ -26,7 +26,7 @@ export default class AppNavbar extends Component {
         >
           <Nav>
             <Nav.Link
-              href="/posts"
+              href="/"
               style={{ marginLeft: "10px" }}
               className="nav-item"
             >
@@ -59,7 +59,7 @@ export default class AppNavbar extends Component {
                 className="signup-btn"
                 size="sm"
                 tag={Link}
-                href="/posts"
+                href="/"
                 onClick={() => localStorage.clear()}
               >
                 Log out

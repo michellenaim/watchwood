@@ -14,7 +14,7 @@ function App() {
         <div className="content-wrap">
           <Switch>
             <Route path="/login" exact={true} component={Login} />
-            <Route path="/posts" exact={true} component={PostList} />
+            <Route path="/" exact={true} component={PostList} />
             <Route path="/post/:id" component={PostEdit} />
           </Switch>
         </div>

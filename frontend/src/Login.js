@@ -35,7 +35,7 @@ function Login() {
 
       localStorage.setItem("currentUser", JSON.stringify(currentUser));
       console.log("Saved in Local Storage");
-      history.push("/posts");
+      history.push("/");
     }
   }
 

@@ -168,12 +168,7 @@ class PostEdit extends Component {
                 <Button type="submit" className="mt-3 btn-normal">
                   Save
                 </Button>
-                <Button
-                  color="secondary"
-                  className="mt-3"
-                  tag={Link}
-                  to="/posts"
-                >
+                <Button color="secondary" className="mt-3" tag={Link} to="/">
                   Cancel
                 </Button>
               </FormGroup>
