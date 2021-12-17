@@ -145,7 +145,7 @@ class PostList extends Component {
         )}
         <p className="d-flex justify-content-center px-4 sub-title text-center">
           Stay up to date and help the community by reporting incidents that
-          happen around you.
+          happen around you, in San Francisco.
         </p>
         <div>
           <img
