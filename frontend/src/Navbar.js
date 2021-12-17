@@ -7,7 +7,7 @@ export default class AppNavbar extends Component {
   render() {
     return (
       <Navbar expand="lg" className="navbar-header">
-        <Navbar.Brand href="/posts" style={{ marginLeft: "15px" }}>
+        <Navbar.Brand href="/" style={{ marginLeft: "15px" }}>
           <img
             src="/watchwood-logo.png"
             className="d-inline-block align-top"

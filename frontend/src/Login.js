@@ -52,7 +52,7 @@ function Login() {
         setFlagLogin(true);
       } else {
         setFlagLogin(false);
-        history.push("/posts");
+        history.push("/");
       }
     } else {
       setFlagLogin(true);

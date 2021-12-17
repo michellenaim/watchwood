@@ -52,7 +52,7 @@ class PostEdit extends Component {
       },
       body: JSON.stringify(post),
     });
-    this.props.history.push("/posts");
+    this.props.history.push("/");
   };
 
   render() {
